@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "graphql-gateway"
+version = "0.1.0"
+description = ""
+authors = ["hieunbk <18520743@gm.uit.edu.vn>"]
+readme = "README.md"
+packages = [{include = "graphql_gateway", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.115.12"
+uvicorn = {extras = ["standard"], version = "^0.34.2"}
+strawberry-graphql = {extras = ["federation"], version = "^0.270.0"}
+python-jose = {extras = ["cryptography"], version = "^3.4.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+sqlalchemy = "^1.4"
+alembic = "^1.15.2"
+psycopg2-binary = "^2.9.10"
+pydantic-settings = "^2.9.1"
+fastapi-filter = "^2.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

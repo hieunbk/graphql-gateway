@@ -1,0 +1,11 @@
+federation_version: 2
+subgraphs:
+  users:
+    routing_url: http://localhost:8000
+    schema:
+      subgraph_url: http://localhost:8000/graphql
+
+  posts:
+    routing_url: http://localhost:8001
+    schema:
+      subgraph_url: http://localhost:8001/graphql
