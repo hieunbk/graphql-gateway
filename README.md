@@ -33,6 +33,8 @@ Backend, JSON based web API based on OpenAPI: http://localhost:8000/redoc/
 
 Automatic interactive documentation with Swagger UI (from the OpenAPI backend): http://localhost:8000/docs
 
+Automatic interactive GraphQL playground (GraphQL API): http://localhost:8000/graphql
+
 ## Local development, additional details
 
 ### General workflow
