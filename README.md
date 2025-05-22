@@ -12,15 +12,19 @@ cp .example.env .env
 ```
 Update the .env file with other relevant configurations.
 
+* Generate requirements.txt from poetry
+```bash
+poetry export -f requirements.txt --output requirements.txt --without-hashes
+```
+
 * Build the Docker image
 ```bash
-docker compose -f docker-compose.local.yml build --build-arg ENVIRONMENT=dev
+docker build -t <tag-name> -f Dockerfile .
 ```
-ENVIRONMENT: `dev`, `stag`, `prod`
 
 * Run the Docker container
 ```bash
-docker compose -f docker-compose.local.yml up -d
+docker run -p 8000:8000 <tag-name>
 ```
 
 * Now you can open your browser and interact with these URLs:
@@ -28,14 +32,6 @@ docker compose -f docker-compose.local.yml up -d
 Backend, JSON based web API based on OpenAPI: http://localhost:8000/redoc/
 
 Automatic interactive documentation with Swagger UI (from the OpenAPI backend): http://localhost:8000/docs
-
-**Note**: The first time you start your stack, it might take a minute for it to be ready. While the backend waits for the database to be ready and configures everything. You can check the logs to monitor it.
-
-To check the logs, run:
-
-```bash
-docker compose -f docker-compose.local.yml logs
-```
 
 ## Local development, additional details
 
@@ -63,19 +59,6 @@ $ fastapi dev src/app/main.py
 ```
 
 ### Backend tests
-
-### Migrations
-
-As during local development your app directory is mounted as a volume inside the container, you can also run the migrations with `alembic` commands inside the container and the migration code will be in your app directory (instead of being only inside the container). So you can add it to your git repository.
-
-Make sure you create a "revision" of your models and that you "upgrade" your database with that revision every time you change them. As this is what will update the tables in your database. Otherwise, your application will have errors.
-
-* Start an interactive session in the backend container:
-
-```console
-$ docker compose -f docker-compose.local.yml exec app bash
-```
-
 * After changing a model (for example, adding a column), inside the container, create a revision, e.g.:
 
 ```console

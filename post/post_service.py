@@ -38,8 +38,6 @@ POSTS = [
     Post(id="2", title="GraphQL is cool", content="Indeed it is!", author_id="1"),
     Post(id="3", title="Hello World", content="My first post", author_id="2"),
 ]
-
-
 # Định nghĩa Query type
 @strawberry.federation.type
 class Query:
